@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/controller/note_repository_controller.dart';
 import 'package:note_app/features/widgets/custom_button.dart';
 
 class AddNotePage extends StatelessWidget {
@@ -7,7 +8,7 @@ class AddNotePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     TextEditingController titleController = TextEditingController();
-    TextEditingController commentController = TextEditingController();
+    TextEditingController descriptionController = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xff252525),
       body: SafeArea(
@@ -32,7 +33,7 @@ class AddNotePage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                controller: commentController,
+                controller: descriptionController,
                 maxLines: 10,
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
@@ -47,7 +48,12 @@ class AddNotePage extends StatelessWidget {
               ),
             ),
             CustomButoon(
-              onTap: (){},
+              onTap: (){
+                NoteRepositoryController().addNoteToFirestire(
+                  title: titleController.text, 
+                  description: descriptionController.text
+                );
+              },
               text: "Save",
             ),
           ],
