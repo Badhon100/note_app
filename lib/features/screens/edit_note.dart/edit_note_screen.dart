@@ -4,27 +4,43 @@ import 'package:note_app/features/screens/note_pages/home_page.dart';
 import 'package:note_app/features/widgets/custom_button.dart';
 
 class EditNoteScreen extends StatefulWidget {
-  final noteId;
-  const EditNoteScreen({super.key, required this.noteId});
+  final String noteId;
+  final String title;
+  final String description;
+  const EditNoteScreen({
+    super.key, 
+    required this.noteId, 
+    required this.title,
+    required this.description
+  });
 
   @override
   State<EditNoteScreen> createState() => _EditNoteScreenState();
 }
 
 class _EditNoteScreenState extends State<EditNoteScreen> {
+  
   @override
   Widget build(BuildContext context) {
-    TextEditingController titleController = TextEditingController();
-    TextEditingController descriptionController = TextEditingController();
+    String title = widget.title;
+    String description = widget.description;
     return Scaffold(
       backgroundColor: const Color(0xff252525),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color(0xff252525),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                controller: titleController,
+                onChanged: (value) {
+                  setState(() {
+                    title = value;
+                  });
+                },
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -33,32 +49,36 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                       color: Colors.white24
                     ),
                   ) ,
-                  hintText: "Title"
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                controller: descriptionController,
+                onChanged: (value) {
+                  setState(() {
+                    description = value;
+                  });
+                },
+                autofocus: false,
                 maxLines: 10,
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  hintText: description,
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 3,
                       color: Colors.white24
                     ),
                   ),
-                  hintText: "Type something..."
                 ),
               ),
             ),
             CustomButoon(
               onTap: (){
                 NoteRepositoryController().editNoteOnFirestore(
-                  title: titleController.text, 
-                  description: descriptionController.text,
+                  title: title, 
+                  description: description,
                   noteId: widget.noteId
                 );
                 Navigator.push(

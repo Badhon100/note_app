@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:note_app/features/screens/add_note/add_note_page.dart';
 import 'package:note_app/features/widgets/note_tile.dart';
 import 'package:note_app/model/note_model.dart';
@@ -32,15 +33,18 @@ class Homepage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          return ListView.builder(
+          return MasonryGridView.count(
+            crossAxisCount: 2, 
             itemCount: snapshot.data!.docs.length,
+            mainAxisSpacing: 3,
+            crossAxisSpacing: 3,
             itemBuilder: (context, index) {
               final noteDataMap = snapshot.data!.docs[index];
               NoteModel noteModel = NoteModel.fromMap(noteDataMap.data() as Map<String, dynamic>);
               return NoteTile(
                 noteModel: noteModel,
               );
-            },
+            }
           );
         }
       ),

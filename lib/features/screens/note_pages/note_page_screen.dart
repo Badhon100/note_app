@@ -29,7 +29,7 @@ class NotePageScren extends StatelessWidget {
                     onPressed: (){
                       Navigator.pop(context);
                     }, 
-                      icon: Icon(Icons.arrow_back_ios_new, size: 32, color: Colors.amber[200],)
+                      icon: const Icon(Icons.arrow_back,)
                   ),
                   Column(
                     children: [
@@ -47,7 +47,12 @@ class NotePageScren extends StatelessWidget {
                     onPressed: (){
                       Navigator.push(
                         context, 
-                        MaterialPageRoute(builder: (context)=> EditNoteScreen(noteId: noteModel.noteId)),
+                        MaterialPageRoute(builder: (context)=> EditNoteScreen(
+                          noteId: noteModel.noteId, 
+                          title: noteModel.title,
+                          description: noteModel.description,
+                          ),
+                        ),
                       );
                     }, 
                       icon: Icon(Icons.edit, size: 32, color: Colors.amber[200],)
@@ -57,11 +62,14 @@ class NotePageScren extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              Text(
-                noteModel.description,
-                  style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  noteModel.description,
+                    style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400
+                  ),
                 ),
               )
             ],

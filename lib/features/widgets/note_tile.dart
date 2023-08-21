@@ -31,17 +31,26 @@ class NoteTile extends StatelessWidget {
             color: Colors.amber[200],
             borderRadius: BorderRadius.circular(8)
           ),
-          child: Column(
-            children: [
-              Text(
-                noteModel.title,
-                style: const TextStyle(
-                  fontSize: 20,
-                  color: Colors.black
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              children: [
+                Text(
+                  noteModel.title,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                  ),
                 ),
-              ),
-              Text(date)
-            ],
+                Text(
+                  date,
+                  style: const TextStyle(
+                    color: Colors.black
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

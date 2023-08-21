@@ -11,6 +11,10 @@ class AddNotePage extends StatelessWidget {
     TextEditingController descriptionController = TextEditingController();
     return Scaffold(
       backgroundColor: const Color(0xff252525),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color(0xff252525),
+      ),
       body: SafeArea(
         child: Column(
           children: [
