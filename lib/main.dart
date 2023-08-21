@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:note_app/firebase_options.dart';
-import 'package:note_app/note_pages/home_page.dart';
-import 'package:note_app/welcome_page.dart';
+import 'package:note_app/features/screens/note_pages/home_page.dart';
+import 'package:note_app/features/screens/welcome_page.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,10 +25,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      title: 'Noteapp',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.black54
       ),
       home: StreamBuilder(
         stream: FirebaseAuth.instance.authStateChanges(), 
