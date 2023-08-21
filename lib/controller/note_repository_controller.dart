@@ -21,4 +21,18 @@ class NoteRepositoryController{
     );
     await collection.set(noteModel.toMap());
   }
+  deleteNoteOnFireStore(noteId)async{
+    await firestore.collection("Notes").doc(noteId).delete();
+  }
+
+  editNoteOnFirestore({
+    required title,
+    required description,
+    required noteId
+  }) async{
+    await firestore.collection("Notes").doc(noteId).update({
+      "title": title,
+      "description": description
+    });
+  }
 }

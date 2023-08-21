@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/controller/note_repository_controller.dart';
 import 'package:note_app/features/screens/note_pages/note_page_screen.dart';
 import 'package:note_app/model/note_model.dart';
 import 'package:intl/intl.dart';
@@ -21,6 +22,9 @@ class NoteTile extends StatelessWidget {
               context, 
               MaterialPageRoute(builder: (context)=> NotePageScren(noteModel: noteModel,)),
             );
+        },
+        onLongPress: (){
+          NoteRepositoryController().deleteNoteOnFireStore(noteModel.noteId);
         },
         child: Container(
           decoration: BoxDecoration(
