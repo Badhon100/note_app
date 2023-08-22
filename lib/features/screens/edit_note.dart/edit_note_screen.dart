@@ -81,9 +81,10 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
                   description: descriptionController.text,
                   noteId: widget.noteId
                 );
-                Navigator.push(
+                Navigator.pushAndRemoveUntil(
                   context, 
                   MaterialPageRoute(builder: (context)=> const Homepage()),
+                  (route) => false,
                 );
               },
               text: "Update",

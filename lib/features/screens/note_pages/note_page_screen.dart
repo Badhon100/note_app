@@ -36,7 +36,7 @@ class NotePageScren extends StatelessWidget {
                       Text(
                         noteModel.title,
                         style: const TextStyle(
-                          fontSize: 26,
+                          fontSize: 20,
                           fontWeight: FontWeight.w600
                         ),
                       ),

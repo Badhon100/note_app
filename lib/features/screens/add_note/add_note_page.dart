@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/controller/note_repository_controller.dart';
+import 'package:note_app/features/screens/note_pages/home_page.dart';
 import 'package:note_app/features/widgets/custom_button.dart';
 
 class AddNotePage extends StatelessWidget {
@@ -65,7 +66,11 @@ class AddNotePage extends StatelessWidget {
                   title: titleController.text, 
                   description: descriptionController.text
                 );
-                Navigator.pop(context);
+                Navigator.pushAndRemoveUntil(
+                  context, 
+                  MaterialPageRoute(builder: (context)=> const Homepage()),
+                  (route) => false,
+                );
               },
               text: "Save",
             ),
