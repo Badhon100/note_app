@@ -14,4 +14,4 @@ Add Note:
 Edit Note:
 ![edit_page](https://github.com/Badhon100/note_app/assets/32125810/3a2432bb-8f94-4342-af8e-7418b09594d2)
 
-Apk file link: 
+Apk file link: https://github.com/Badhon100/note_app/blob/main/assets/app-release.apk
