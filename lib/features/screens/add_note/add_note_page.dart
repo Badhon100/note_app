@@ -23,13 +23,17 @@ class AddNotePage extends StatelessWidget {
               child: TextField(
                 controller: titleController,
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                decoration:  InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 3,
                       color: Colors.white24
                     ),
                   ) ,
+                  focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide:  const BorderSide(color: Colors.white24),
+                  ),
                   hintText: "Title"
                 ),
               ),
@@ -40,12 +44,16 @@ class AddNotePage extends StatelessWidget {
                 controller: descriptionController,
                 maxLines: 10,
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 3,
                       color: Colors.white24
                     ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  borderSide:  const BorderSide(color: Colors.white24),
                   ),
                   hintText: "Type something..."
                 ),

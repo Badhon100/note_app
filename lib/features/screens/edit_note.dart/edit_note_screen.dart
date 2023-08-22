@@ -22,8 +22,9 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
   
   @override
   Widget build(BuildContext context) {
-    String title = widget.title;
-    String description = widget.description;
+
+    TextEditingController titleController = TextEditingController(text: widget.title);
+    TextEditingController descriptionController = TextEditingController(text: widget.description);
     return Scaffold(
       backgroundColor: const Color(0xff252525),
       appBar: AppBar(
@@ -36,40 +37,39 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    title = value;
-                  });
-                },
+                controller: titleController,
                 style: const TextStyle(color: Colors.white),
-                decoration: const InputDecoration(
-                  enabledBorder: OutlineInputBorder(
+                decoration: InputDecoration(
+                  enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 3,
                       color: Colors.white24
                     ),
                   ) ,
+                  focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide:  const BorderSide(color: Colors.white24),
+                  ),
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    description = value;
-                  });
-                },
                 autofocus: false,
                 maxLines: 10,
                 style: const TextStyle(color: Colors.white),
+                controller: descriptionController,
                 decoration: InputDecoration(
-                  hintText: description,
                   enabledBorder: const OutlineInputBorder(
                     borderSide: BorderSide(
                       width: 3,
                       color: Colors.white24
                     ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(25.0),
+                  borderSide:  const BorderSide(color: Colors.white24),
                   ),
                 ),
               ),
@@ -77,8 +77,8 @@ class _EditNoteScreenState extends State<EditNoteScreen> {
             CustomButoon(
               onTap: (){
                 NoteRepositoryController().editNoteOnFirestore(
-                  title: title, 
-                  description: description,
+                  title: titleController.text, 
+                  description: descriptionController.text,
                   noteId: widget.noteId
                 );
                 Navigator.push(
